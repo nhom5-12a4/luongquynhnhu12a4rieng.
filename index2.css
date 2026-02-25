@@ -1,0 +1,231 @@
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body{
+    overflow-x:hidden;
+    color:white;
+    background: url("nenhome.jpg") center/cover no-repeat fixed;
+}
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:url("nenhome.jpg") center/cover no-repeat;
+    filter: blur(2px) brightness(0.6);
+    z-index:-1;
+}
+
+header{
+    ext-align:center;
+    padding:60px 20px;
+}
+header h1{
+    font-size:40px;
+    letter-spacing:2px;
+    animation: fadeIn 2s ease;
+}
+
+nav{
+    display:flex;
+    justify-content:center;
+    gap:40px;
+    padding:15px;
+    backdrop-filter: blur(10px);
+    background: rgba(255,255,255,0.1);
+    position:sticky;
+    top:0;
+}
+
+nav a{
+    text-decoration:none;
+    color:white;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+nav a:hover{
+    color:#ffd700;
+    transform:scale(1.2);
+}
+
+section{
+    padding:80px 20px;
+    text-align:center;
+}
+
+.glass{
+    background: rgba(255,255,255,0.15);
+    border-radius:20px;
+    padding:30px;
+    width:80%;
+    margin:20px auto;
+    backdrop-filter: blur(15px);
+    box-shadow:0 8px 32px rgba(0,0,0,0.3);
+    animation: fadeUp 1.5s ease;
+}
+
+@keyframes fadeIn{
+    from{opacity:0;}
+    to{opacity:1;}
+}
+
+@keyframes fadeUp{
+    from{opacity:0; transform:translateY(30px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+input, textarea{
+    width:80%;
+    padding:10px;
+    margin:10px;
+    border:none;
+    border-radius:10px;
+}
+
+button{
+    padding:10px 20px;
+    border:none;
+    border-radius:20px;
+    background:#ffd700;
+    cursor:pointer;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+button:hover{
+    background:#ff9800;
+    transform:scale(1.1);
+}
+
+footer{
+    text-align:center;
+    padding:30px;
+    background:rgba(0,0,0,0.3);
+}
+
+.star{
+    position:fixed;
+    width:3px;
+    height:3px;
+    background:white;
+    border-radius:50%;
+    animation: twinkle 3s infinite;
+}
+
+@keyframes twinkle{
+    0%,100%{opacity:0.2;}
+    50%{opacity:1;}
+}
+
+@media(max-width:768px){
+    .glass{
+        width:95%;
+    }
+} 
+
+.qr-wrap{
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.qr-wrap img{
+  width: 150px;        /* đổi 90-150 tùy bạn */
+  height: 150px;
+  object-fit: cover;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.75);
+  padding: 8px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+}
+.vol-btns{
+  margin-top: 12px;
+  display:flex;
+  gap:12px;
+  justify-content:center;
+  align-items:center;
+}
+.vol-btns button{
+  padding:8px 14px;
+  border:none;
+  border-radius:14px;
+  cursor:pointer;
+  font-weight:700;
+}
+#volText{
+  font-weight:700;
+}
+.intro-img{
+  width: min(650px, 90%);
+  margin-top: 16px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+  display:block;
+  margin-left:auto;
+  margin-right:auto;
+}
+.section-img{
+  width: 100%;
+  max-width: 700px;
+  display: block;
+  margin: 14px auto 0;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0,0,0,.18);
+}
+
+/* Album dạng lưới */
+.album-grid{
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+}
+
+.album-img{
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 14px;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(0,0,0,.15);
+  transition: transform .15s ease;
+}
+.album-img:hover{ transform: scale(1.03); }
+#popup{
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.75);
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+}
+#popupImg{
+  max-width: 92vw;
+  max-height: 88vh;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.35);
+}
+.top-right-images{
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  gap: 10px;
+  z-index: 999999; /* luôn nổi trên cùng */
+}
+
+.top-right-images img{
+  width: 70px;        /* chỉnh to/nhỏ ở đây */
+  height: 70px;
+  object-fit: cover;
+  border-radius: 14px;
+  box-shadow: 0 10px 25px rgba(0,0,0,.18);
+}

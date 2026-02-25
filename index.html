@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="vi">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>12A4 - Thanh Xuân Rực Rỡ</title>
+<body>
+<link rel="stylesheet" href="index2.css">
+<header>
+    <h1>✨ LỚP 12A4 – THANH XUÂN RỰC RỠ ✨</h1>
+    <p>Chúng ta đã cùng nhau viết nên câu chuyện đẹp nhất tuổi 18</p>
+</header>
+
+<nav>
+    <a href="gioithieu.html" class="btn">Giới thiệu</a>
+    <a href="kyniem.html">Kỷ niệm</a>
+    <a href="luubut.html">Lưu bút</a>
+</nav>
+
+<section id="gioithieu">
+  <div class="glass">
+    <h2>Thanh xuân là gì?</h2>
+    <p>Là những buổi học cuối cùng, những tiếng cười vang hành lang và cả những giọt nước mắt ngày chia xa...</p>
+
+    <img src="thethao2.jpg" alt="Thanh xuân 12A4">
+  </div>
+</section>
+
+<section id="kyniem">
+  <section id="hinhanh">
+    <div class="glass">
+      <h2>📸 Album 12A4</h2>
+
+      <!-- Ảnh dưới "Album 12A4" -->
+      <div class="album-grid">
+        <img src="album1.jpg" alt="Ảnh 1" onclick="openImage(this.src)"width="250" height="250">
+        <img src="album2.jpg" alt="Ảnh 2" onclick="openImage(this.src)"width="250" height="250">
+        <img src="album3.jpg" alt="Ảnh 3" onclick="openImage(this.src)"width="250" height="250">
+        <img src="album4.jpg" alt="Ảnh 4" onclick="openImage(this.src)"width="250" height="250">
+      </div>
+    </div>
+  </section>
+
+<!-- Popup phóng to ảnh -->
+<div id="popup" onclick="closeImage()">
+    <img id="popupImg">
+</div>
+    <div class="glass">
+        <h2>📸 Kỷ niệm đáng nhớ</h2>
+        <p>20/11 cuối cùng  – Những giờ kiểm tra đầy hồi hộp – Những lần cả lớp bị phạt nhưng vẫn cười.</p>
+        <div class="glass">
+  <h2>📸 Kỷ niệm đáng nhớ</h2>
+  <p>20/11 cuối cùng  – Những giờ kiểm tra đầy hồi hộp – Những lần cả lớp bị phạt nhưng vẫn cười.</p>
+  <div class="album-grid">
+    <img src="kyniem2.jpg" alt="Kỷ niệm 2" onclick="openImage(this.src)"width="250" height="250">
+    <img src="kyniem3.jpg" alt="Kỷ niệm 3" onclick="openImage(this.src)"width="250" height="250">
+    <img src="kyniem4.jpg" alt="Kỷ niệm 4" onclick="openImage(this.src)"width="250" height="250">
+  </div>
+</div>
+    </div>
+</section>
+
+
+<footer>
+    Nhóm thực hiện: Quyynhw | Năm học 2025-2026
+    <br><br>
+    <button onclick="toggleMusic()">🎵 Bật/Tắt Nhạc</button>
+    <div class="qr-wrap">
+  <img src="fbqr.png" alt="QR 1">
+  <img src="igqr.jpg" alt="QR 2">
+  <img src="ttqr.jpg" alt="QR 3">
+</div>
+<div class="vol-btns">
+  <button type="button" onclick="volDown()">🔉 -</button>
+  <span id="volText">Âm lượng: 30%</span>
+  <button type="button" onclick="volUp()">🔊 +</button>
+</div>
+</footer>
+
+<audio id="bgMusic" loop autoplay muted>
+  <source src="thanhxuan.mp3" type="audio/mp3">
+</audio>
+
+<script>
+function addMessage(){
+  let name = document.getElementById("name").value;
+  let message = document.getElementById("message").value;
+  if(name && message){
+    let newMsg = document.createElement("p");
+    newMsg.innerHTML = "<strong>" + name + ":</strong> " + message;
+    document.getElementById("messages").appendChild(newMsg);
+    document.getElementById("name").value="";
+    document.getElementById("message").value="";
+  }
+}
+
+function toggleMusic(){
+  let music = document.getElementById("bgMusic");
+  if(music.paused){
+    music.muted = false;
+    music.play();
+  } else {
+    music.pause();
+  }
+}
+
+// tạo sao
+for(let i=0;i<80;i++){
+  let star = document.createElement("div");
+  star.className="star";
+  star.style.top=Math.random()*100+"vh";
+  star.style.left=Math.random()*100+"vw";
+  star.style.animationDuration=(2+Math.random()*3)+"s";
+  document.body.appendChild(star);
+}
+
+// auto play khi load (sẽ chạy nếu trình duyệt cho phép)
+window.addEventListener("load", () => {
+  const music = document.getElementById("bgMusic");
+  music.play().catch(()=>{});
+});
+
+// click lần đầu ở trang -> bật tiếng + play (vượt chặn autoplay)
+document.addEventListener("click", () => {
+  const music = document.getElementById("bgMusic");
+  if (music.paused) {
+    music.muted = false;
+    music.play().catch(()=>{});
+  } else if (music.muted) {
+    music.muted = false;
+  }
+}, { once: true });
+const music = document.getElementById("bgMusic");
+let vol = 0.3;              // âm lượng mặc định 30%
+music.volume = vol;
+
+function updateVolText(){
+  document.getElementById("volText").textContent = "Âm lượng: " + Math.round(vol*100) + "%";
+}
+
+function volUp(){
+  vol = Math.min(1, vol + 0.1);
+  music.volume = vol;
+  updateVolText();
+}
+
+function volDown(){
+  vol = Math.max(0, vol - 0.1);
+  music.volume = vol;
+  updateVolText();
+}
+
+updateVolText();
+<script>
+    document.getElementById("popupImg").src = src;
+    document.getElementById("popup").style.display = "flex";
+  function closeImage(){
+    document.getElementById("popup").style.display = "none";
+  }
+</script>
+<div class="top-right-images">
+  <img src="goc1.jpg" alt="Góc phải 1"width="150" height="150">
+  <img src="goc2.jpg" alt="Góc phải 2"width="150" height="150">
+</div>
+</body>
+</html>

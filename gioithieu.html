@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="vi">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Giới thiệu lớp 12A4</title>
+<body>
+<link rel="stylesheet" href="index3.css">
+<div class="banner">
+    <img src="HINHNEN2.jpg">
+    <div class="banner-text">
+        <h1>LỚP 12A4</h1>
+        <p>Đoàn kết – Sáng tạo – Tỏa sáng 💗</p>
+    </div>
+</div>
+
+<div class="section">
+    <h2>Giới thiệu chung</h2>
+    <div class="info-box">
+        <p><b>Trường:</b> THPT KRÔNG BÔNG  </p>
+        <p><b>Năm học:</b> 2025 – 2026</p>
+        <p><b>Sĩ số:</b> 45 học sinh</p>
+        <p>Lớp 12A4 là một tập thể đoàn kết, năng động và luôn nỗ lực vươn lên trong học tập cũng như hoạt động.</p>
+    </div>
+</div>
+
+<div class="section">
+    <h2>Giáo viên chủ nhiệm</h2>
+    <div class="teacher-box">
+        <img src="COKHUYEN.jpg">
+        <div class="teacher-info">
+            <h3>Cô Nguyễn Thị KHUYÊN </h3>
+            <p>Cô luôn tận tâm, truyền động lực và đồng hành cùng tập thể 11A1 trong suốt hành trình thanh xuân.</p>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2>Ban cán sự lớp</h2>
+    <div class="grid">
+        <div class="card">
+           <img src="HPHONG.jpg">
+            <h3>HUỲNH MINH PHONG</h3>
+            <p>Lớp trưởng</p>
+        </div>
+        <div class="card">
+            <img src="TUE.jpg">
+            <h3>VÕ HỒ KHAI TUỆ </h3>
+            <p>Lớp phó học tập </p>
+        </div>
+        <div class="card">
+            <img src="QHUY.jpg">
+            <h3>PHẠM QUANG HUY</h3>
+            <p>Bí thư</p>
+        </div>
+        </div>
+    </div>
+</div>
+</footer>
+
+<script>
+function createSakura(){
+    const sakura = document.createElement("div");
+    sakura.className = "sakura";
+    sakura.innerHTML = "🌸";
+
+    sakura.style.left = Math.random() * window.innerWidth + "px";
+    sakura.style.fontSize = (Math.random() * 15 + 15) + "px";
+    sakura.style.animationDuration = (Math.random() * 6 + 5) + "s";
+
+    document.body.appendChild(sakura);
+
+    setTimeout(() => sakura.remove(), 11000);
+}
+
+setInterval(createSakura, 300);
+</script>
+<a href="index.html" class="back">← Quay về trang chủ</a>
+</body>
+</html>
+<footer>
+    Nhóm thực hiện: 12A4 | Năm học 2025-2026
+    <br><br>
+    <button onclick="toggleMusic()">🎵 Bật/Tắt Nhạc</button>
+    <div class="vol-btns">
+  <button type="button" onclick="volDown()">🔉 -</button>
+  <span id="volText">Âm lượng: 30%</span>
+  <button type="button" onclick="volUp()">🔊 +</button>
+</div>
+</footer>
+
+
+<audio id="bgMusic" loop autoplay muted>
+  <source src="Đại Lộ Mặt Trời.mp3" type="audio/mp3">
+</audio>
+
+
+<script>
+function addMessage(){
+    let name = document.getElementById("name").value;
+    let message = document.getElementById("message").value;
+    if(name && message){
+        let newMsg = document.createElement("p");
+        newMsg.innerHTML = "<strong>" + name + ":</strong> " + message;
+        document.getElementById("messages").appendChild(newMsg);
+        document.getElementById("name").value="";
+        document.getElementById("message").value="";
+    }
+}
+
+function toggleMusic(){
+    let music = document.getElementById("bgMusic");
+    if(music.paused){
+        music.play();
+    } else {
+        music.pause();
+    }
+}
+for(let i=0;i<80;i++){
+    let star = document.createElement("div");
+    star.className="star";
+    star.style.top=Math.random()*100+"vh";
+    star.style.left=Math.random()*100+"vw";
+    star.style.animationDuration=(2+Math.random()*3)+"s";
+    document.body.appendChild(star);
+}
+// auto play khi load (sẽ chạy nếu trình duyệt cho phép)
+window.addEventListener("load", () => {
+  const music = document.getElementById("bgMusic");
+  music.play().catch(()=>{});
+});
+
+// click lần đầu ở trang -> bật tiếng + play (vượt chặn autoplay)
+document.addEventListener("click", () => {
+  const music = document.getElementById("bgMusic");
+  if (music.paused) {
+    music.muted = false;
+    music.play().catch(()=>{});
+  } else if (music.muted) {
+    music.muted = false;
+  }
+}, { once: true });
+const music = document.getElementById("bgMusic");
+let vol = 0.3;              // âm lượng mặc định 30%
+music.volume = vol;
+
+function updateVolText(){
+  document.getElementById("volText").textContent = "Âm lượng: " + Math.round(vol*100) + "%";
+}
+
+function volUp(){
+  vol = Math.min(1, vol + 0.1);
+  music.volume = vol;
+  updateVolText();
+}
+
+function volDown(){
+  vol = Math.max(0, vol - 0.1);
+  music.volume = vol;
+  updateVolText();
+}
+
+updateVolText();
+</script>
+
+</body>
+</html>

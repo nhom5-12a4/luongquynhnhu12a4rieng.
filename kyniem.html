@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Kỷ Niệm Đẹp</title>
+    <link rel="stylesheet" href="index4.css">
+</head>
+<body>
+    <header>
+        <h1>🌸 Kỷ Niệm Của Chúng Ta 🌸</h1>
+        <p class="quote">"Thời gian có thể trôi đi, nhưng kỷ niệm sẽ mãi còn lại."</p>
+    </header>
+
+    <section>
+        <h2>📸 Hình Ảnh Kỷ Niệm</h2>
+        <div class="gallery">
+            <img src="lop1.jpg" width="600" height="600">
+            <img src="lop2.jpg"width="600" height="600">
+            <img src="lop3.jpg"width="600" height="600">
+            <img src="lop4.jpg"width="600" height="600">
+        </div>
+    </section>
+
+    <section>
+        <h2>🎥 Video Kỷ Niệm</h2>
+        <video controls>
+            <source src="12a4.mp4" type="video/mp4">
+            Trình duyệt của bạn không hỗ trợ video.
+        </video>
+    </section>
+
+    <section>
+        <h2>💖 Thông Điệp</h2>
+        <p>
+            Mỗi khoảnh khắc bên nhau đều là món quà quý giá.  
+            Cảm ơn vì đã cùng nhau tạo nên những kỷ niệm thật đẹp.
+        </p>
+        <button onclick="showMessage()">Nhấn vào đây 💌</button>
+    </section>
+
+    <footer>
+        © 2026 - Website Kỷ Niệm
+    </footer>
+
+    <script>
+        function showMessage() {
+            alert("Dù mai sau có thế nào, những ký ức này sẽ luôn ở trong tim ❤️");
+        }
+
+
+ const STAR_COUNT = 80;
+
+  for(let i=0;i<STAR_COUNT;i++){
+    const star = document.createElement("div");
+    star.className = "star";
+
+    // vị trí ngang ngẫu nhiên
+    star.style.left = (Math.random()*100) + "vw";
+
+    // rơi lệch thời điểm (để không rơi cùng lúc)
+    star.style.animationDelay = (-Math.random()*10) + "s";
+
+    // tốc độ rơi ngẫu nhiên
+    star.style.animationDuration = (3 + Math.random()*7) + "s";
+
+    // kích thước ngẫu nhiên
+    const size = 2 + Math.random()*3;
+    star.style.width = size + "px";
+    star.style.height = size + "px";
+
+    document.body.appendChild(star);
+  }
+</script>
+    </script>
+<a href="index.html">Về trang chủ</a>
+
+<!-- Nhạc nền -->
+<audio id="bgMusic" loop autoplay muted>
+  <source src="Đại Lộ Mặt Trời.mp3" type="audio/mp3">
+</audio>
+
+<!-- Cụm nút nhạc -->
+<div class="music-bar">
+  <button type="button" onclick="toggleMusic()">🎵 Bật/Tắt Nhạc</button>
+  <button type="button" onclick="volDown()">🔉 -</button>
+  <span id="volText">Âm lượng: 30%</span>
+  <button type="button" onclick="volUp()">🔊 +</button>
+<script>
+function addMessage(){
+    let name = document.getElementById("name").value;
+    let message = document.getElementById("message").value;
+    if(name && message){
+        let newMsg = document.createElement("p");
+        newMsg.innerHTML = "<strong>" + name + ":</strong> " + message;
+        document.getElementById("messages").appendChild(newMsg);
+        document.getElementById("name").value="";
+        document.getElementById("message").value="";
+    }
+}
+
+function toggleMusic(){
+    let music = document.getElementById("bgMusic");
+    if(music.paused){
+        music.play();
+    } else {
+        music.pause();
+    }
+}
+for(let i=0;i<80;i++){
+    let star = document.createElement("div");
+    star.className="star";
+    star.style.top=Math.random()*100+"vh";
+    star.style.left=Math.random()*100+"vw";
+    star.style.animationDuration=(2+Math.random()*3)+"s";
+    document.body.appendChild(star);
+}
+// auto play khi load (sẽ chạy nếu trình duyệt cho phép)
+window.addEventListener("load", () => {
+  const music = document.getElementById("bgMusic");
+  music.play().catch(()=>{});
+});
+
+// click lần đầu ở trang -> bật tiếng + play (vượt chặn autoplay)
+document.addEventListener("click", () => {
+  const music = document.getElementById("bgMusic");
+  if (music.paused) {
+    music.muted = false;
+    music.play().catch(()=>{});
+  } else if (music.muted) {
+    music.muted = false;
+  }
+}, { once: true });
+const music = document.getElementById("bgMusic");
+let vol = 0.3;              // âm lượng mặc định 30%
+music.volume = vol;
+
+function updateVolText(){
+  document.getElementById("volText").textContent = "Âm lượng: " + Math.round(vol*100) + "%";
+}
+
+function volUp(){
+  vol = Math.min(1, vol + 0.1);
+  music.volume = vol;
+  updateVolText();
+}
+
+function volDown(){
+  vol = Math.max(0, vol - 0.1);
+  music.volume = vol;
+  updateVolText();
+}
+
+updateVolText();
+</script>
+
+</html>
